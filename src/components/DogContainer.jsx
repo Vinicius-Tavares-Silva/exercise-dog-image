@@ -6,6 +6,7 @@ class DogContainer extends Component {
 
     this.state = {
       dogImage: '',
+      dogRequest: false,
     };
   }
 
@@ -13,8 +14,10 @@ class DogContainer extends Component {
     fetch('https://dog.ceo/api/breeds/image/random')
       .then((data) => data.json())
       .then((dog) => {
-        console.log(dog.message);
-        this.setState({ dogImage: dog.message });
+        this.setState({ 
+         dogImage: dog.message,
+         dogRequest: true,
+         });
       });
   };
 
@@ -23,8 +26,12 @@ class DogContainer extends Component {
   }
 
   render() {
-    const { dogImage } = this.state;
-    return <img src={dogImage} alt="" />;
+    const { dogImage, dogRequest } = this.state;
+    return (
+     <div>
+      { dogRequest ? <img src={dogImage} alt="" /> : <span>LOADING...</span> }
+     </div>
+    );
   }
 }
 
