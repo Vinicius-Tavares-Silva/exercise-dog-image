@@ -30,6 +30,7 @@ class DogContainer extends Component {
     return (
      <div>
       { dogRequest ? <img src={dogImage} alt="" /> : <span>LOADING...</span> }
+      <button onClick={this.fetchDog}>New Dog!</button>
      </div>
     );
   }
